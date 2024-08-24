@@ -1,14 +1,5 @@
-export default [
+export default ({ env }) => [
   "strapi::logger",
-  "strapi::errors",
-  "strapi::security",
-  "strapi::cors",
-  "strapi::poweredBy",
-  "strapi::query",
-  "strapi::body",
-  "strapi::session",
-  "strapi::favicon",
-  "strapi::public",
   {
     name: "strapi::security",
     config: {
@@ -20,19 +11,34 @@ export default [
             "'self'",
             "data:",
             "blob:",
-            "market-assets.strapi.io",
-            "aws-strapi.s3.eu-central-1.amazonaws.com",
+            "res.cloudinary.com", // cloudinary images
+            "lh3.googleusercontent.com", // google avatars
+            "platform-lookaside.fbsbx.com", // facebook avatars
+            "dl.airtable.com", // strapi marketplace
+            `https://${env("AWS_BUCKET_NAME")}.s3.${env(
+              "AWS_REGION"
+            )}.amazonaws.com`,
           ],
           "media-src": [
             "'self'",
             "data:",
             "blob:",
-            "market-assets.strapi.io",
-            "aws-strapi.s3.eu-central-1.amazonaws.com",
+            `https://${env("AWS_BUCKET_NAME")}.s3.${env(
+              "AWS_REGION"
+            )}.amazonaws.com`,
           ],
           upgradeInsecureRequests: null,
         },
       },
     },
   },
+  "strapi::errors",
+  "strapi::security",
+  "strapi::cors",
+  "strapi::poweredBy",
+  "strapi::query",
+  "strapi::body",
+  "strapi::session",
+  "strapi::favicon",
+  "strapi::public",
 ];
